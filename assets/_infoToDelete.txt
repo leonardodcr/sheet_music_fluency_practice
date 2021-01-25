@@ -1,0 +1,27 @@
+Clave de fá:
+'b_g2', 'b_a2', 'b_b2', 'b_c3', 'b_d3', 'b_e3', 'b_f3', 'b_g3', 'b_a3'
+1 linha suplementar:
+'b_e2', 'b_f2', 'b_b3', 'b_c4'
+2 linhas suplementares:
+'b_c2', 'b_d2', 'b_d4', 'b_e4'
+3 linhas suplementares:
+'b_a1', 'b_b1', 'b_f4', 'b_g4'
+4 linhas suplementares:
+'b_f1', 'b_g1', 'b_a4', 'b_b4'
+5 linhas suplementares:
+'b_d1', 'b_e1', 'b_c5', 'b_d5'
+
+----
+
+Clave de sol:
+'t_e4', 't_f4', 't_g4', 't_a4', 't_b4', 't_c5', 't_d5', 't_e5', 't_f5'
+1 linha suplementar:
+'t_c4', 't_d4', 't_g5', 't_a5'
+2 linhas suplementares:
+'t_a3', 't_b3', 't_b5', 't_c6'
+3 linhas suplementares:
+'t_f3', 't_g3', 't_d6', 't_e6'
+4 linhas suplementares:
+'t_d3', 't_e3', 't_f6', 't_g6'
+5 linhas suplementares:
+'t_b2', 't_c3', 't_a6', 't_b6'
