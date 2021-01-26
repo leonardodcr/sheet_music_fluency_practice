@@ -18,8 +18,7 @@ class _PracticeState extends State<Practice> {
   //r.nextInt(0, notes.length);
 
   Color getScoreColor() {
-    if (rightAnswer == null)
-      return Colors.black;
+    if (rightAnswer == null) return Colors.black;
 
     return rightAnswer ? Colors.lightGreen : Colors.red;
   }
@@ -31,7 +30,17 @@ class _PracticeState extends State<Practice> {
 
   void startNotesList() {
     if (data['clefs'] == 'Bass') {
-      notes.addAll(['b_g2', 'b_a2', 'b_b2', 'b_c3', 'b_d3', 'b_e3', 'b_f3', 'b_g3', 'b_a3']);
+      notes.addAll([
+        'b_g2',
+        'b_a2',
+        'b_b2',
+        'b_c3',
+        'b_d3',
+        'b_e3',
+        'b_f3',
+        'b_g3',
+        'b_a3'
+      ]);
 
       if (data['ledgerLines'] > 0) {
         notes.addAll(['b_e2', 'b_f2', 'b_b3', 'b_c4']);
@@ -118,148 +127,131 @@ class _PracticeState extends State<Practice> {
         centerTitle: true,
       ),
       body: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    'Score: $score/$totalNotes',
-                    style: TextStyle(
-                      fontSize: 19.0,
-                      color: getScoreColor(),
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                ]
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+            child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              Text(
+                'Score: $score/$totalNotes',
+                style: TextStyle(
+                    fontSize: 19.0,
+                    color: getScoreColor(),
+                    fontWeight: FontWeight.bold),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Image.asset('assets/$imagePath.png', height: 225),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            primary: Colors.orange,
-                            minimumSize: Size(60,60)
-                        ),
-                      onPressed: () {
-                        press('c');
-                      },
-                      child: Text(
-                        data['notation'] == 'Classic' ? 'Dó' : 'C',
-                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)
-                      )
-                    ),
-                    SizedBox(width: 5),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            primary: Colors.orange,
-                            minimumSize: Size(60,60)
-                        ),
-                        onPressed: () {
-                          press('d');
-                        },
-                        child: Text(
-                            data['notation'] == 'Classic' ? 'Ré' : 'D',
-                            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)
-                        )
-                    ),
-                    SizedBox(width: 5),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            primary: Colors.orange,
-                            minimumSize: Size(60,60)
-                        ),
-                        onPressed: () {
-                          press('e');
-                        },
-                        child: Text(
-                            data['notation'] == 'Classic' ? 'Mi' : 'E',
-                            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)
-                        )
-                    ),
-                    SizedBox(width: 5),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            primary: Colors.orange,
-                            minimumSize: Size(60,60)
-                        ),
-                        onPressed: () {
-                          press('f');
-                        },
-                        child: Text(
-                            data['notation'] == 'Classic' ? 'Fá' : 'F',
-                            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)
-                        )
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            primary: Colors.orange,
-                            minimumSize: Size(60,60)
-                        ),
-                        onPressed: () {
-                          press('g');
-                        },
-                        child: Text(
-                            data['notation'] == 'Classic' ? 'Sol' : 'G',
-                            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)
-                        )
-                    ),
-                    SizedBox(width: 5),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            primary: Colors.orange,
-                            minimumSize: Size(60,60)
-                        ),
-                        onPressed: () {
-                          press('a');
-                        },
-                        child: Text(
-                            data['notation'] == 'Classic' ? 'Lá' : 'A',
-                            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)
-                        )
-                    ),
-                    SizedBox(width: 5),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            primary: Colors.orange,
-                            minimumSize: Size(60,60)
-                        ),
-                        onPressed: () {
-                          press('b');
-                        },
-                        child: Text(
-                            data['notation'] == 'Classic' ? 'Si' : 'B',
-                            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)
-                        )
-                    )
-                  ],
-                )
-              ],
-            ),
-          ],
-        ),
+            ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Image.asset('assets/$imagePath.png', height: 225),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      primary: Colors.orange,
+                      minimumSize: Size(60, 60)),
+                  onPressed: () {
+                    press('c');
+                  },
+                  child: Text(data['notation'] == 'Classic' ? 'Dó' : 'C',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold))),
+              SizedBox(width: 5),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      primary: Colors.orange,
+                      minimumSize: Size(60, 60)),
+                  onPressed: () {
+                    press('d');
+                  },
+                  child: Text(data['notation'] == 'Classic' ? 'Ré' : 'D',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold))),
+              SizedBox(width: 5),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      primary: Colors.orange,
+                      minimumSize: Size(60, 60)),
+                  onPressed: () {
+                    press('e');
+                  },
+                  child: Text(data['notation'] == 'Classic' ? 'Mi' : 'E',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold))),
+              SizedBox(width: 5),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      primary: Colors.orange,
+                      minimumSize: Size(60, 60)),
+                  onPressed: () {
+                    press('f');
+                  },
+                  child: Text(data['notation'] == 'Classic' ? 'Fá' : 'F',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold))),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      primary: Colors.orange,
+                      minimumSize: Size(60, 60)),
+                  onPressed: () {
+                    press('g');
+                  },
+                  child: Text(data['notation'] == 'Classic' ? 'Sol' : 'G',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold))),
+              SizedBox(width: 5),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      primary: Colors.orange,
+                      minimumSize: Size(60, 60)),
+                  onPressed: () {
+                    press('a');
+                  },
+                  child: Text(data['notation'] == 'Classic' ? 'Lá' : 'A',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold))),
+              SizedBox(width: 5),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      primary: Colors.orange,
+                      minimumSize: Size(60, 60)),
+                  onPressed: () {
+                    press('b');
+                  },
+                  child: Text(data['notation'] == 'Classic' ? 'Si' : 'B',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold)))
+            ],
+          )
+        ],
+      ),
     );
   }
 }
