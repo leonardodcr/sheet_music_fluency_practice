@@ -1,6 +1,7 @@
+import 'dart:developer';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Practice extends StatefulWidget {
   @override
@@ -15,12 +16,37 @@ class _PracticeState extends State<Practice> {
   String imagePath;
   bool rightAnswer;
   Random r = Random.secure();
-  //r.nextInt(0, notes.length);
+  int best = 0;
+  SharedPreferences prefs;
 
   Color getScoreColor() {
     if (rightAnswer == null) return Colors.black;
 
     return rightAnswer ? Colors.lightGreen : Colors.red;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadBest();
+  }
+
+  loadBest() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      best = (prefs.getInt('best') ?? 0);
+    });
+  }
+
+  setBest() async {
+    if (prefs == null) prefs = await SharedPreferences.getInstance();
+    var currBest = (prefs.getInt('best') ?? 0);
+    if (score > currBest) {
+      await prefs.setInt('best', score);
+      setState(() {
+        best = score;
+      });
+    }
   }
 
   void initialize() {
@@ -88,10 +114,11 @@ class _PracticeState extends State<Practice> {
     }
   }
 
-  void press(String note) {
+  void press(String note) async {
     if (note == imagePath.substring(2, 3)) {
       setState(() {
         score++;
+        setBest();
         rightAnswer = true;
         loadNextNote();
       });
@@ -118,7 +145,6 @@ class _PracticeState extends State<Practice> {
     if (notes.isEmpty) {
       initialize();
     }
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -129,16 +155,25 @@ class _PracticeState extends State<Practice> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
-            child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-              Text(
-                'Score: $score/$totalNotes',
-                style: TextStyle(
-                    fontSize: 19.0,
-                    color: getScoreColor(),
-                    fontWeight: FontWeight.bold),
-              ),
-            ]),
+            padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Best: $best',
+                    style: TextStyle(
+                        fontSize: 19.0,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Score: $score/$totalNotes',
+                    style: TextStyle(
+                        fontSize: 19.0,
+                        color: getScoreColor(),
+                        fontWeight: FontWeight.bold),
+                  ),
+                ]),
           ),
           Padding(
             padding: const EdgeInsets.all(18.0),
