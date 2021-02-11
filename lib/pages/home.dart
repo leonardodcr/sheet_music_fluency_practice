@@ -8,6 +8,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   static String classic = 'Classic';
   static String bass = 'Bass';
+  int best = 0;
 
   String selectedNotation = classic;
   List<String> notations = [classic, 'Letter'];
@@ -36,7 +37,7 @@ class _HomeState extends State<Home> {
               Text('Choose the desired config and press play.'),
               Card(
                 color: Colors.lightGreen[50],
-                margin: EdgeInsets.symmetric(horizontal: 40.0, vertical: 40.0),
+                margin: EdgeInsets.all(40.0),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(children: [
@@ -96,7 +97,7 @@ class _HomeState extends State<Home> {
                     )
                   ]),
                 ),
-              ),
+              )
             ],
           ),
         ),
