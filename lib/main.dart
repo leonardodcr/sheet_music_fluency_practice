@@ -14,5 +14,3 @@ void main() {
       }
   )));
 }
-
-//https://pub.dev/packages/localstorage

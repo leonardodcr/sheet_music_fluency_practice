@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,6 +18,16 @@ class _PracticeState extends State<Practice> {
   Random r = Random.secure();
   int best = 0;
   SharedPreferences prefs;
+  BannerAd bannerAd;
+
+  BannerAd createBannerAd() {
+    return BannerAd(
+      adUnitId: 'ca-app-pub-7236377929270881/8004893582',
+      size: AdSize.smartBanner,
+      listener: (MobileAdEvent event) {
+        print('Banner event: $event');
+      });
+  }
 
   Color getScoreColor() {
     if (rightAnswer == null) return Colors.black;
@@ -27,6 +38,8 @@ class _PracticeState extends State<Practice> {
   @override
   void initState() {
     super.initState();
+    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-7236377929270881~3242030800');
+    bannerAd = createBannerAd()..load();
     loadBest();
   }
 
@@ -144,6 +157,7 @@ class _PracticeState extends State<Practice> {
     if (notes.isEmpty) {
       initialize();
     }
+    bannerAd.show();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
